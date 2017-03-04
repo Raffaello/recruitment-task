@@ -56,3 +56,9 @@ $ php script.php --input="data/file.xml" --output="results/result.txt"
 - csv file could be improved, now is it forced to have a specific ordered for the columns
 - to process the file actually it would be better to parse and extract each user at time to use less memory
 now is extracting everything and put in a array of users  (Users[]). 
+
+### usage
+
+- from the directory first run `composer install`
+- then can run the test `./vendor/bin/phpunit -c .`
+- run the command with eg `p src/main.php thirdbridge:file-reader data/file.csv`
