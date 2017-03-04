@@ -1,0 +1,27 @@
+{
+    "name": "raffa/recruitment-task",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Raffaello Bertini",
+            "email": "raffaellobertini@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "ThirdBridge\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ThirdBridge\\test\\": "test/"
+        }
+    },
+
+    "require-dev": {
+        "phpunit/phpunit": "^6.0"
+    }
+}
