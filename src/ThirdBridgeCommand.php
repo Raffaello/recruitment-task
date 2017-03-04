@@ -11,6 +11,7 @@ use ThirdBridge\FileProcessing\AbstractFileProcessing;
 use ThirdBridge\FileProcessing\CsvFileProcessing;
 use ThirdBridge\FileProcessing\XmlFileProcessing;
 use ThirdBridge\FileProcessing\YmlFileProcessing;
+use ThirdBridge\Model\User;
 
 class ThirdBridgeCommand extends Command
 {
@@ -18,6 +19,8 @@ class ThirdBridgeCommand extends Command
     protected $file;
     /** @var AbstractFileProcessing */
     protected $fileProcessor;
+    /** @var OutputInterface */
+    protected $output;
 
     protected function configure()
     {
@@ -31,11 +34,12 @@ class ThirdBridgeCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->file = $input->getArgument('file');
+        $this->output        = $output;
+        $this->file          = $input->getArgument('file');
         $this->fileProcessor = $this->fileProcessingFactory();
         do {
             $user = $this->fileProcessor->readNextUser();
-            var_dump($user);
+            $output->writeln($user);
         }while ($user !== null);
 
         return 0;
@@ -58,5 +62,12 @@ class ThirdBridgeCommand extends Command
             default:
                 throw new Exception("file format not supported: {$this->file}");
         }
+    }
+
+    protected function formatOutput(User $user)
+    {
+        $this->output->writeln("Name    : {$user->getName()}");
+        $this->output->writeln("isActive: {$user->isActive()}");
+        $this->output->writeln("Value   : {$user->getValue()}");
     }
 }
