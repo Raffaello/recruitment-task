@@ -48,3 +48,11 @@ $ php script.php --input="data/file.xml" --output="results/result.txt"
 
 - Try to avoid using full stack frameworks (like Symfony or Laravel). Standalone libraries or components are obviously acceptable.
 - Try to follow an OOP approach. Don't be afraid of "over-engineering" that tool. This task obviously is simple and could be done in a few lines of code but we're interested in your OOP knowledge.
+
+
+### consideration on the implementation
+
+- Used some symfony components to simplyfing the command and parsing
+- csv file could be improved, now is it forced to have a specific ordered for the columns
+- to process the file actually it would be better to parse and extract each user at time to use less memory
+now is extracting everything and put in a array of users  (Users[]). 
