@@ -15,6 +15,8 @@ use ThirdBridge\Model\User;
 
 class ThirdBridgeCommand extends Command
 {
+    const CMD_NAME = 'thirdbridge:file-reader';
+
     /** @var string */
     protected $file;
     /** @var AbstractFileProcessing */
@@ -25,7 +27,7 @@ class ThirdBridgeCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('thirdbridge:file-reader')
+            ->setName(self::CMD_NAME)
             ->setDescription('reads file in .csv .xml .yml format')
             ->setHelp('this command is just to pass a test')
             ->addArgument('file', InputArgument::REQUIRED, 'the file to be processed')
@@ -37,10 +39,9 @@ class ThirdBridgeCommand extends Command
         $this->output        = $output;
         $this->file          = $input->getArgument('file');
         $this->fileProcessor = $this->fileProcessingFactory();
-        do {
-            $user = $this->fileProcessor->readNextUser();
-            $output->writeln($user);
-        }while ($user !== null);
+        while (($user = $this->fileProcessor->readNextUser())!== null){
+            $this->formatOutput($user);
+        }
 
         return 0;
     }
@@ -67,7 +68,7 @@ class ThirdBridgeCommand extends Command
     protected function formatOutput(User $user)
     {
         $this->output->writeln("Name    : {$user->getName()}");
-        $this->output->writeln("isActive: {$user->isActive()}");
+        $this->output->writeln('isActive: ' . ($user->isActive()? 'true': 'false'));
         $this->output->writeln("Value   : {$user->getValue()}");
     }
 }

@@ -26,9 +26,7 @@ class CsvFileProcessing extends AbstractFileProcessing
      */
     private function parseCsv(array $csv): array
     {
-        var_dump($csv);
         $header = $csv[0];
-        var_dump($header);
         // assuming header is fine already ordered.
         // @TODO mapping the header with the expected column
         if (false === $this->checkCsvRequirement($header)) {
@@ -38,7 +36,7 @@ class CsvFileProcessing extends AbstractFileProcessing
         $res = [];
         for($i = 1; $i < count($csv); $i++) {
             $aRes['name']   = $csv[$i][0];
-            $aRes['active'] = $csv[$i][1];
+            $aRes['active'] = strtolower($csv[$i][1]) === 'true';
             $aRes['value']  = $csv[$i][2];
             $res[] = $aRes;
         }

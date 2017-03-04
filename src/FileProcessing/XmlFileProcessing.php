@@ -14,7 +14,7 @@ class XmlFileProcessing extends AbstractFileProcessing
         $res = [];
         foreach($obj as $user) {
             $aUser['name']   = (string) $user->name[0];
-            $aUser['active'] = (bool) $user->active[0];
+            $aUser['active'] = (bool) ((string)strtolower($user->active[0]) === 'true');
             $aUser['value']  = (int) $user->value[0];
             $res[] = $aUser;
         }
