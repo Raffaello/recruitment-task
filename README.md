@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/Raffaello/recruitment-task.svg?branch=master)](https://travis-ci.org/Raffaello/recruitment-task)
+
+[![codecov](https://codecov.io/gh/Raffaello/recruitment-task/branch/master/graph/badge.svg)](https://codecov.io/gh/Raffaello/recruitment-task)
+
 # Recruitment task
 
 The aim is to create a command line tool which reads data from a file, performs simple operation on this data and stores or prints a result. Input files could have different format (csv, yml, xml), but they contain the same data. The result could be stored in a plain text file or printed on stdout. Please see the input files (located in `data` directory) to check the data structure.
